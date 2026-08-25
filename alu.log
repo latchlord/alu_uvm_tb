@@ -1,0 +1,34 @@
+
+Warning-[UNKWN_OPTVSIM] Unknown option passed
+  Ignoring unknown option '-ntb_opts.uvm' passed to 'vcs' and continuing 
+  compilation.
+
+Command: vcs -full64 -sverilog -ntb_opts.uvm testbench.sv -l alu.log
+                         Chronologic VCS (TM)
+      Version Q-2020.03-SP2-8_Full64 -- Mon Jun  1 11:59:34 2026
+               Copyright (c) 1991-2020 by Synopsys Inc.
+                         ALL RIGHTS RESERVED
+
+This program is proprietary and confidential information of Synopsys Inc.
+and may be used and disclosed only as authorized in a license agreement
+controlling such use and disclosure.
+
+Parsing design file 'testbench.sv'
+
+Error-[SV-LCM-PND] Package not defined
+testbench.sv, 3
+$unit, "uvm_pkg::"
+  Package scope resolution failed. Token 'uvm_pkg' is not a package. 
+  Originating module '$unit'.
+  Move package definition before the use of the package.
+
+
+Error-[SFCOR] Source file cannot be opened
+  Source file "uvm_macros.svh" cannot be opened for reading due to 'No such 
+  file or directory'.
+  Please fix above issue and compile again.
+  "testbench.sv", 4
+  Source info: `include "uvm_macros.svh"
+
+2 errors
+CPU time: .158 seconds to compile

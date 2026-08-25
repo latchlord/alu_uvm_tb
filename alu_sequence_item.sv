@@ -19,6 +19,9 @@ class alu_sequence_item extends uvm_sequence_item;
     	  logic       l;          
     	  logic       err;
 
+	  constraint ce_bias  { ce  dist {1 := 90, 0 := 10}; }
+	  constraint rst_bias { rst dist {0 := 95, 1 := 5};  }
+
          `uvm_object_utils_begin(alu_sequence_item)
 	 `uvm_field_int(opa,       UVM_ALL_ON)
  	 `uvm_field_int(opb,       UVM_ALL_ON)

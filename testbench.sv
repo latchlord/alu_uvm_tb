@@ -7,6 +7,7 @@ import uvm_pkg::*;
 //include all files
 //-------------------------------------------------
 
+`include "design.sv"
 `include "alu_if.sv"
 `include "alu_sequence_item.sv"
 `include "alu_sequence.sv"

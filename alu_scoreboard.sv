@@ -169,10 +169,12 @@ class alu_scoreboard extends uvm_scoreboard;
 
         4'b0011: begin // SUB_CIN
           expected[7:0] = curr_trans.opa - curr_trans.opb - curr_trans.cin;
-          if (actual[7:0] !== expected[7:0])
-            `uvm_error("ALU_SB", $sformatf("SUB_CIN FAIL: got=%0h exp=%0h", actual[7:0], expected[7:0]))
+          exp_oflow     = (curr_trans.opa < curr_trans.opb) ? 1 : 0;
+          if (actual[7:0] !== expected[7:0] || curr_trans.oflow !== exp_oflow)
+            `uvm_error("ALU_SB", $sformatf("SUB_CIN FAIL: got=%0h exp=%0h OFLOW got=%0b exp=%0b",
+                        actual[7:0], expected[7:0], curr_trans.oflow, exp_oflow))
           else
-            `uvm_info("ALU_SB", $sformatf("SUB_CIN PASS: RES=%0h", actual[7:0]), UVM_LOW)
+            `uvm_info("ALU_SB", $sformatf("SUB_CIN PASS: RES=%0h OFLOW=%0b", actual[7:0], exp_oflow), UVM_LOW)
         end
 
         4'b0100: begin // INC_A  [BUG_1: DUT may not increment]
@@ -208,9 +210,13 @@ class alu_scoreboard extends uvm_scoreboard;
         end
 
         4'b1000: begin // CMP
-          exp_g = (curr_trans.opa >  curr_trans.opb);
-          exp_e = (curr_trans.opa == curr_trans.opb);
-          exp_l = (curr_trans.opa <  curr_trans.opb);
+          if (curr_trans.opa > curr_trans.opb) begin
+            exp_g = 1'b1; exp_e = 1'bz; exp_l = 1'bz;
+          end else if (curr_trans.opa == curr_trans.opb) begin
+            exp_g = 1'bz; exp_e = 1'b1; exp_l = 1'bz;
+          end else begin
+            exp_g = 1'bz; exp_e = 1'bz; exp_l = 1'b1;
+          end
           if (curr_trans.g !== exp_g || curr_trans.e !== exp_e || curr_trans.l !== exp_l)
             `uvm_error("ALU_SB", $sformatf("CMP FAIL: G=%0b E=%0b L=%0b  exp G=%0b E=%0b L=%0b",
                         curr_trans.g, curr_trans.e, curr_trans.l, exp_g, exp_e, exp_l))

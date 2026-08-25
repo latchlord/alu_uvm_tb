@@ -60,7 +60,7 @@ class alu_scoreboard extends uvm_scoreboard;
     RST : coverpoint data.rst { bins active = {1}; bins inactive = {0}; }
 
     // Compare flags
-    CMP_FLAGS : coverpoint {data.g, data.e, data.l} {
+    CMP_FLAGS : coverpoint (3'({data.g, data.e, data.l})) {
       bins greater = {3'b100};
       bins equal   = {3'b010};
       bins less    = {3'b001};

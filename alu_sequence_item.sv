@@ -1,7 +1,4 @@
-`include "defines.sv";
-`include "uvm_macros.svh"
-import uvm_pkg::*;
-
+`include "defines.sv"
 
 class alu_sequence_item extends uvm_sequence_item;
          `uvm_object_utils_begin(alu_sequence_item)
@@ -21,30 +18,26 @@ class alu_sequence_item extends uvm_sequence_item;
  	 `uvm_field_int(l,         UVM_ALL_ON)
  	 `uvm_field_int(err,       UVM_ALL_ON)
  	 `uvm_object_utils_end
-  
-   	  rand logic [7:0] opa;           
-   	  rand logic [7:0] opb;           
-   	  rand logic [3:0] cmd;           
-  	  rand logic       mode;         
-  	  rand logic       cin;           
-  	  rand logic [1:0] inp_valid;     
-  	  rand logic       ce;            
-  	  rand logic       rst;           
-  
-   	  logic [9:0] res;        
-   	  logic       cout;       
-   	  logic       oflow;      
-    	  logic       g;          
-   	  logic       e;          
-   	  logic       l;          
-   	  logic       err;
-	  function new(string name ="alu_sequence_item")
+   
+    	  rand logic [7:0] opa;           
+    	  rand logic [7:0] opb;           
+    	  rand logic [3:0] cmd;           
+   	  rand logic       mode;         
+   	  rand logic       cin;           
+   	  rand logic [1:0] inp_valid;     
+   	  rand logic       ce;            
+   	  rand logic       rst;           
+   
+    	  logic [9:0] res;        
+    	  logic       cout;       
+    	  logic       oflow;      
+     	  logic       g;          
+    	  logic       e;          
+    	  logic       l;          
+    	  logic       err;
+
+	  function new(string name = "alu_sequence_item");
 		  super.new(name);
 	  endfunction
 
   endclass
-
-
-
-   
-	

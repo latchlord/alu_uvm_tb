@@ -1,4 +1,4 @@
-class alu_test extends uvm_test();
+class alu_test extends uvm_test;
   `uvm_component_utils(alu_test)
   
   alu_env env;
@@ -11,17 +11,17 @@ class alu_test extends uvm_test();
   
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    env=alu_env::type_id::create("env",this);
-    seq = alu_sequence::type_id::create("seq",this);
-      endfunction
+    env = alu_env::type_id::create("env", this);
+    seq = alu_sequence::type_id::create("seq");
+  endfunction
   
-  function void start_of_simulation();
-        uvm_top.print_topology();
+  function void start_of_simulation_phase(uvm_phase phase);
+    uvm_top.print_topology();
   endfunction
   
   task run_phase(uvm_phase phase);
     super.run_phase(phase);
-    `uvm_info("ALU_TEST","INSIDE RUN PHASE",UVM_HIGH)
+    `uvm_info("ALU_TEST", "INSIDE RUN PHASE", UVM_HIGH)
     
     phase.raise_objection(this);
     

@@ -5,13 +5,11 @@ class alu_sequence extends uvm_sequence;
 		super.new(name);
 	endfunction
 	task body();
-		`uvm_info("Inside sequence body",UVM HIGH)
-		pkt=alu_sequence_item::type_id::create("pkt");
+		`uvm_info("ALU_SEQ", "Inside sequence body", UVM_HIGH)
+		pkt = alu_sequence_item::type_id::create("pkt");
 		start_item(pkt);
 		pkt.randomize();
 		finish_item(pkt);
-	endtask:body
+	endtask : body
 
-endclass:alu_sequence
-		
-
+endclass : alu_sequence

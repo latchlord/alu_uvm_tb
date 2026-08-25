@@ -7,7 +7,7 @@ interface alu_if(input logic clk);
 	logic ce;
 	logic [3:0] cmd;
 	logic [1:0] inp_valid;
-	logic [9:0] result;
+	logic [9:0] res;
 	logic cout;
 	logic oflow;
 	logic g;
@@ -15,4 +15,4 @@ interface alu_if(input logic clk);
 	logic l;
 	logic err;
 
-endinterface: alu_if
+endinterface

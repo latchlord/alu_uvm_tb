@@ -16,6 +16,7 @@ import uvm_pkg::*;
 `include "alu_monitor.sv"
 `include "alu_agent.sv"
 `include "alu_scoreboard.sv"
+`include "alu_coverage.sv"
 `include "alu_subscriber.sv"
 `include "alu_env.sv"
 `include "alu_test.sv"

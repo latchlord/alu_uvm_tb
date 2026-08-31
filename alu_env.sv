@@ -3,6 +3,7 @@ class alu_env extends uvm_env;
   
   alu_agent agt;
   alu_scoreboard scb;
+  alu_subscriber cov;
   
   function new(string name = "alu_env", uvm_component parent);
     super.new(name, parent);
@@ -13,12 +14,14 @@ class alu_env extends uvm_env;
     
     agt=alu_agent::type_id::create("agt",this);
     scb=alu_scoreboard::type_id::create("scb",this);
+    cov=alu_subscriber::type_id::create("cov",this);
        
   endfunction
   
   function void connect_phase(uvm_phase phase);
     super.connect_phase(phase);
     agt.mon.monitor_port.connect(scb.scoreboard_imp);
+    agt.mon.monitor_port.connect(cov.analysis_export);
   endfunction
   
 endclass

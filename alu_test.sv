@@ -25,7 +25,7 @@ class alu_test extends uvm_test;
     
     phase.raise_objection(this);
     
-    repeat(100) begin
+    repeat(500) begin
       seq.start(env.agt.sqr);
       #10;
      end

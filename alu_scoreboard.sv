@@ -61,9 +61,9 @@ class alu_scoreboard extends uvm_scoreboard;
 
     // Compare flags
     CMP_FLAGS : coverpoint (3'({data.g, data.e, data.l})) {
-      bins greater = {3'b100};
-      bins equal   = {3'b010};
-      bins less    = {3'b001};
+      bins greater = {3'b1zz};
+      bins equal   = {3'bz1z};
+      bins less    = {3'bzz1};
     }
 
     // Rotate amount opb[2:0]

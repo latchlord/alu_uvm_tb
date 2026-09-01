@@ -55,11 +55,11 @@ class alu_coverage;
     CE  : coverpoint data.ce  { bins active = {1}; bins disabled = {0}; }
     RST : coverpoint data.rst { bins active = {1}; bins inactive = {0}; }
 
-    // Compare flags
-    CMP_FLAGS : coverpoint (3'({data.g, data.e, data.l})) {
-      bins greater = {3'b1zz};
-      bins equal   = {3'bz1z};
-      bins less    = {3'bzz1};
+    // Compare flags — use === to produce clean 2-state values (z is silently dropped by coverage engine)
+    CMP_FLAGS : coverpoint ({(data.g === 1'b1), (data.e === 1'b1), (data.l === 1'b1)}) {
+      bins greater = {3'b100};
+      bins equal   = {3'b010};
+      bins less    = {3'b001};
     }
 
     // Rotate amount opb[2:0]
